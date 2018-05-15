@@ -1,0 +1,70 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">New post</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+
+    <form (ngSubmit)="onSubmit(postForm); c('Close click')" [formGroup]="postForm">
+
+      <div class="form-group">
+        <label>USERID</label>
+        <select class="form-control userId" formControlName="userId">
+          <option *ngFor="let number of userIdarray" [value]="number">
+            {{number}}
+          </option>
+        </select>
+      </div>
+      <div class="err-msg" *ngIf="postForm.controls['userId'].touched && !postForm.controls['userId'].valid">
+        <span *ngIf="postForm.controls['userId'].hasError('required') ">
+          UserId is required
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label>TITLE</label>
+        <textarea class="form-control title" formControlName="title" required></textarea>
+      </div>
+      <div class="err-msg" *ngIf="postForm.controls['title'].touched && !postForm.controls['title'].valid">
+        <span *ngIf="postForm.controls['title'].hasError('required') ">
+          Title is required
+         </span>
+        <span *ngIf="postForm.controls['title'].hasError('minlength') ">
+          Min length is 5
+         </span>
+        <span *ngIf="postForm.controls['title'].hasError('maxlength') ">
+          Max length is 50
+        </span>
+      </div>
+
+
+      <div class="form-group">
+        <label>BODY</label>
+        <textarea type="text" class="form-control body" formControlName="body" required></textarea>
+      </div>
+      <div class="err-msg" *ngIf="postForm.controls['body'].touched && !postForm.controls['body'].valid">
+        <span *ngIf="postForm.controls['body'].hasError('required') ">
+          Body is required
+         </span>
+        <span *ngIf="postForm.controls['body'].hasError('minlength') ">
+          Min length is 10
+         </span>
+        <span *ngIf="postForm.controls['body'].hasError('maxlength') ">
+          Max length is 100
+        </span>
+      </div>
+
+      <button type="submit" class="btn btn-success submit" [disabled]="!postForm.valid">Add post</button>
+      <button type="button" class="btn btn-outline-dark reset" (click)="resetForm()">Reset fields</button>
+      <!--<pre>{{postForm.value | json}}</pre>-->
+
+    </form>
+
+  </div>
+
+</ng-template>
+
+<button class="btn btn-lg btn-outline-primary add-post-btn" (click)="open(content)">Add post</button>

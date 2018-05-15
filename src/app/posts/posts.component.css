@@ -1,0 +1,17 @@
+.post{
+  padding: 20px;
+  border-radius: 10px;
+  border: solid grey;
+  margin: 20px;
+  width: auto;
+}
+
+.posts{
+  list-style-type: none;
+}
+
+.container{
+  background-color: rgba(178,161,173,0.4);
+  height: 100%;
+  padding: 20px;
+}

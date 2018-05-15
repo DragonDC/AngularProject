@@ -1,0 +1,46 @@
+<div class="container" *ngIf="post">
+  <div class="post">
+    <h2>{{post.title | uppercase}}</h2>
+    <div>
+      <span>id: </span>{{post.id}}
+    </div>
+
+    <div>
+      <span>User id: </span>{{post.userId}}
+    </div>
+
+    <div>
+      <span>Body: </span>{{post.body}}
+    </div>
+
+  </div>
+
+  <div>
+    <h3>Comments</h3>
+
+    <ul class="comments">
+      <li *ngFor="let comment of comments | paginate: { itemsPerPage: 10, currentPage: p };">
+        <div class="comment">
+          <div>
+            <span>postId: </span>{{comment.postId}}
+          </div>
+          <div>
+            <span>id: </span>{{comment.id}}
+          </div>
+          <div>
+            <span>name: </span>{{comment.name}}
+          </div>
+          <div>
+            <span>email: </span>{{comment.email}}
+          </div>
+          <div>
+            <span>body: </span>{{comment.body}}
+          </div>
+        </div>
+      </li>
+    </ul>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+  </div>
+</div>
+

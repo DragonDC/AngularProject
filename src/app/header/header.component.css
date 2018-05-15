@@ -1,0 +1,11 @@
+.header {
+  background-color: lightgray;
+  padding: 20px;
+  border-bottom: 2px solid black;
+  height: 150px;
+}
+
+.main-page{
+  float:left;
+  margin-left: 50px;
+}

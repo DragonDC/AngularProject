@@ -1,0 +1,22 @@
+<div class="container">
+
+  <ul class="posts">
+    <li class="post" *ngFor="let post of posts | paginate: { itemsPerPage: 10, currentPage: p };">
+      <div class="comment">
+        <div>
+          <span>UserId: </span>{{post.userId}}
+        </div>
+        <div>
+          <a routerLink="/post/{{post.id}}">
+            <span class="badge">{{post.title}}</span>
+          </a>
+        </div>
+        <div>
+          <span>body: </span>{{post.body}}
+        </div>
+      </div>
+    </li>
+  </ul>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+</div>
